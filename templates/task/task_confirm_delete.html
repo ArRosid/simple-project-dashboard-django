@@ -1,0 +1,20 @@
+{% extends 'task/base.html' %}
+
+{% block content %}
+    <h1>Task Delete</h1>
+    <div class="content-section">
+        <form method="POST">
+            {% csrf_token %}
+            <fieldset class="form-group">
+                <legend class="border-bottom mb-4">Are you sure you want to delete the task {{ task.task_name }}?</legend>
+            </fieldset>
+            <div class="form-group">
+                <button class="btn btn-outline-danger" type="submit">Yes, Delete</button>
+                <a class="btn btn-outline-secondary" href="{% url 'task_list' %}" >Cancel</a>
+            </div>
+        </form>
+    </div>
+    
+{% endblock %}
+
+

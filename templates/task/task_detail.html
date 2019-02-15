@@ -1,0 +1,11 @@
+{% extends 'task/base.html' %}
+
+{% block content %}
+    <h1>Task Detail</h1>
+    <div class="jumbotron">
+        <h1 class="display-4">{{task.task_name}}</h1>
+        <p class="lead">{{task.task_desc}}</p>
+        <hr class="my-4">
+        <a class="btn btn-primary btn-lg" href="{% url 'task_list' %}" role="button">Back</a>
+    </div>
+{% endblock %}
