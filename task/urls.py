@@ -3,6 +3,7 @@ from django.urls import path, include
 from . import views
 
 urlpatterns = [
+    path('accounts/', include('django.contrib.auth.urls')),
     path('', views.home),
     path('task_list/', views.TaskListView.as_view(), name='task_list'),
     path('task_list/create/', views.TaskCreateView.as_view(), name='task_create'),

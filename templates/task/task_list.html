@@ -3,6 +3,12 @@
 {% block content %}
     <h1>Task List</h1>
     <a class="btn btn-primary mb-2" href="{% url 'task_create' %}" role="button">Create Task</a>
+    <button class="btn btn-secondary dropdown-toggle mb-2" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+        Welcome {{user.username}}
+    </button>
+    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+        <a class="dropdown-item" href="{% url 'logout' %}">Logout</a>
+    </div>    
     <table class="table table-striped">
         <thead class="thead-dark">
             <tr>

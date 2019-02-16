@@ -1,21 +1,24 @@
 from django.shortcuts import render, redirect
 from django.http import HttpResponse
+from django.contrib.auth.mixins import LoginRequiredMixin
 from django.views.generic import ListView, DetailView, UpdateView, DeleteView, CreateView
 from django.utils import timezone
+from django.contrib.auth.decorators import login_required
 from .models import Task
 
+# @login_required
 def home(request):
-    return HttpResponse("Welcome to Simple Project Dashboard")
+    return render(request, 'task/home.html')
 
-class TaskListView(ListView):
+class TaskListView(LoginRequiredMixin, ListView):
     model = Task
     context_object_name = 'tasks'
 
-class TaskDetailView(DetailView):
+class TaskDetailView(LoginRequiredMixin, DetailView):
     model = Task
     context_object_name = 'task'
 
-class TaskUpdateView(UpdateView):
+class TaskUpdateView(LoginRequiredMixin, UpdateView):
     model = Task
     fields = ['task_name','task_desc']
     success_url = '/task_list'
@@ -27,12 +30,12 @@ class TaskUpdateView(UpdateView):
         kwargs.update(self.extra_context)
         return super().get_context_data(*args, **kwargs)
 
-class TaskDeleteView(DeleteView):
+class TaskDeleteView(LoginRequiredMixin, DeleteView):
     model = Task
     context_object_name = 'task'
     success_url = '/task_list'
 
-class TaskCreateView(CreateView):
+class TaskCreateView(LoginRequiredMixin, CreateView):
     model = Task
     fields = ['task_name','task_desc']
     success_url = '/task_list'
